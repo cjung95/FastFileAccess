@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<!-- Package properties -->
+	<PropertyGroup>
+		<Title>Fast File Accesslibrary</Title>
+		<PackageId>FastFileAccess</PackageId>
+		<Authors>cjung95</Authors>
+		<Description>A library for fast file access on a Windows system using P/Invoke for Win32 API calls. Quickly find files in directories containing hundreds of thousands of files, or check if a file or directory exists on a network share in seconds.</Description>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Copyright>Christoph Jung</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/cjung95/FastFileAccess</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<!-- Generate Package-->
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="docs\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
+	</ItemGroup>
+
+</Project>
