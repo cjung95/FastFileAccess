@@ -9,3 +9,21 @@ If you have any suggestions or feature requests, please open an issue on the Git
 ## Features
 - Fast file and directory existence checks
 - Fast file searching in directories with a large number of files
+
+## Example Usage
+```csharp
+// Check access rights for multiple file access requests
+var accessChecker = new AccessChecker();
+var fileAccessRequest1 = new FileAccessRequest("C:\\Windows\\System32\\cmd.exe", Models.Enums.FileAccessType.ReadData);
+var fileAccessRequest2 = new FileAccessRequest("C:\\Windows\\System32\\cmd.exe", Models.Enums.FileAccessType.WriteData);
+var results = accessChecker.CheckAccessRights([fileAccessRequest1, fileAccessRequest2]);
+foreach (var result in results.Cast<FileAccessRequest>())
+{
+    Console.WriteLine($"Path: {result.Path}, AccessType: {result.AccessType}, Status: {result.Status}");
+}
+
+// Search for the newest file matching the pattern "c?d.e*" in the "C:\Windows\System32" directory
+var fileSearcher = new FileSearcher();
+var searchResults = fileSearcher.FindNewestFile("C:\\Windows\\System32", "c?d.e*");
+Console.WriteLine($"Newest file: {searchResults}");
+```
