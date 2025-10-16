@@ -184,7 +184,13 @@ namespace Jung.FastFileAccess.FileSystem
                 // Create a handle to the file or directory
                 handle = Kernel32Interop.CreateFileSafe(path,
                     dwDesiredAccess: desiredAccess,
-                    dwShareMode: Kernel32Interop.ShareMode.FILE_SHARE_READ,
+
+                    // We want to allow other processes to read, write and delete the file while we have it open
+                    // This is important for parallel access scenarios
+                    dwShareMode: Kernel32Interop.ShareMode.FILE_SHARE_READ | 
+                    Kernel32Interop.ShareMode.FILE_SHARE_WRITE | 
+                    Kernel32Interop.ShareMode.FILE_SHARE_DELETE,
+
                     dwCreationDisposition: Kernel32Interop.CreationDisposition.OPEN_EXISTING,
                     dwFlagsAndAttributes: Kernel32Interop.FileAttributes.FILE_FLAG_BACKUP_SEMANTICS);
 
